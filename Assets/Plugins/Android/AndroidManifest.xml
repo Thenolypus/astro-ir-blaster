@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+          package="com.astroremote.irblaster"
+          android:installLocation="preferExternal">
+          
+  <!-- IR Blaster Permission -->
+  <uses-permission android:name="android.permission.TRANSMIT_IR" />
+  <uses-feature android:name="android.hardware.consumerir" android:required="true" />
+  
+  <!-- Standard Unity permissions -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-feature android:glEsVersion="0x00030000" />
+  <uses-feature android:name="android.hardware.vulkan.version" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
+  
+  <!-- Support different screen sizes -->
+  <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
+  
+  <application 
+    android:icon="@mipmap/app_icon" 
+    android:label="@string/app_name"
+    android:enableOnBackInvokedCallback="false" 
+    android:extractNativeLibs="true" 
+    android:appCategory="game">
+    
+    <!-- Unity metadata -->
+    <meta-data android:name="unity.splash-mode" android:value="0" />
+    <meta-data android:name="unity.splash-enable" android:value="True" />
+    <meta-data android:name="unity.launch-fullscreen" android:value="True" />
+    <meta-data android:name="unity.render-outside-safearea" android:value="True" />
+    <meta-data android:name="notch.config" android:value="portrait|landscape" />
+    <meta-data android:name="unity.auto-report-fully-drawn" android:value="true" />
+    <meta-data android:name="unity.auto-set-game-state" android:value="true" />
+    <meta-data android:name="unity.strip-engine-code" android:value="true" />
+    <meta-data android:name="android.game_mode_config" android:resource="@xml/game_mode_config" />
+    
+    <!-- Main Activity - critical for app to launch -->
+    <activity 
+      android:name="com.unity3d.player.UnityPlayerGameActivity"
+      android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density" 
+      android:enabled="true" 
+      android:exported="true" 
+      android:hardwareAccelerated="false" 
+      android:launchMode="singleTask"  
+      android:resizeableActivity="true" 
+      android:screenOrientation="fullUser" 
+      android:theme="@style/BaseUnityGameActivityTheme">
+      
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="android.app.lib_name" android:value="game" />
+      <meta-data android:name="WindowManagerPreference:FreeformWindowSize" android:value="@string/FreeformWindowSize_maximize" />
+      <meta-data android:name="WindowManagerPreference:FreeformWindowOrientation" android:value="@string/FreeformWindowOrientation_landscape" />
+      <meta-data android:name="notch_support" android:value="true" />
+    </activity>
+    
+  </application>
+</manifest>
